@@ -1,0 +1,27 @@
+<div *ngIf="msgFiltered.length <= 0">
+    <ul   *ngFor="let action of msg">
+        <li>{{action.time | date:'mm:ss'}} User clicked <strong>{{action.action}}</strong> button</li>
+    </ul>
+</div>
+
+<div *ngIf="msgFiltered.length > 0">
+    <ul *ngFor="let action of msgFiltered">
+        <li>{{action.time | date:'mm:ss'}} User <strong>{{action.action}}</strong> button</li>
+    </ul>
+</div>
+
+<div>
+    <label>Filter by action:</label>
+    <select [(ngModel)]="actionFlag" (change)="getMessagesFilteredByActions(actionFlag)">
+        <option *ngFor="let action of actionOptions" [ngValue]="action">{{action}}</option>
+    </select>
+</div>
+
+<div>
+    <label>Sort by time:</label>
+    <select [(ngModel)]="sortedBy" (change)="getMessagesSortByTime(sortedBy)">
+        <option *ngFor="let time of timeOptions" [ngValue]="time">{{time}}</option>
+    </select>
+</div>
+
+

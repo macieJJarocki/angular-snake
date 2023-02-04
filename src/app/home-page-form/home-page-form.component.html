@@ -1,0 +1,10 @@
+<div class="user-form">
+    <form #userForm="ngForm"> 
+    <label>Name:</label>
+    <input name="username" ngModel>
+    <br>
+    <label>Email:</label>
+    <input name="email">
+    </form>
+    <button (click)="sendName(userForm.value.username)">Start</button>
+</div>

@@ -1,0 +1,7 @@
+<div *ngIf="!username" class="home-page">
+  <h2>Welcome </h2>
+  <h3>Fill in the form below to start the game</h3>
+  <app-home-page-form (userDataEvent)="reciveUsername($event)"></app-home-page-form>
+</div>
+{{username}}
+<app-game *ngIf="username"></app-game>

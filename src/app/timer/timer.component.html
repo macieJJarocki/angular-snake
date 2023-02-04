@@ -1,0 +1,4 @@
+<div class="timer">
+    <p *ngIf="currentTime < 60000">Time: {{currentTime | date:'ss'}}</p>
+    <p *ngIf="currentTime > 60000">Time: {{currentTime | date:'mm:ss'}}</p>
+</div>
