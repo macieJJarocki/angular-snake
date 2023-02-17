@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild, } from '@angular/core';
-import { Message } from '../MessageInterface';
+import { Message } from '../Interfaces';
 import { TimerComponent } from '../timer/timer.component';
 
 
@@ -21,7 +21,7 @@ export class GameComponent implements AfterViewInit {
     'Down' : 'User clicked down button',
   }
   public snakeFoodEaten = 0;
-  public actionArray: Message[] = [] 
+  public actionsArray: Message[] = [] 
   public actionTime: number = 0
   
   @ViewChild(TimerComponent) timer!: TimerComponent
@@ -40,7 +40,7 @@ export class GameComponent implements AfterViewInit {
   onClickedButton(element: HTMLElement){
     const action = element.innerText
     const actionMessage = {action: action, time: this.timer.currentTime} 
-    this.actionArray.push(actionMessage)
+    this.actionsArray.push(actionMessage)
   }
 
   }
