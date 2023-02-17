@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page-form',
@@ -13,9 +14,17 @@ export class HomePageFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Output() userDataEvent = new EventEmitter<string>()
+  username = ''
+  email = ''
 
-  sendName(name:string){
-    this.userDataEvent.emit(name)
+
+  @Output() userNameEvent = new EventEmitter<string>()
+
+  onSubmit(form: NgForm){
+    this.username = form.form.controls['username'].value
+    this.email = form.form.controls['email'].value
+
+    this.userNameEvent.emit(this.username)
   }
 }
+

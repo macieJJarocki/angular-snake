@@ -1,10 +1,68 @@
-<div class="user-form">
-    <form #userForm="ngForm"> 
-    <label>Name:</label>
-    <input name="username" ngModel>
-    <br>
-    <label>Email:</label>
-    <input name="email">
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)"> 
+        <div class="username-conatiner">
+            <label>Name:</label>
+            <input
+                #username="ngModel" 
+                ngModel
+                type="text"
+                name="username"
+                required
+                minlength="2"
+                maxlength="25"
+                />
+            <div class="username-error" *ngIf="username.touched">
+                <p *ngIf="username.invalid">
+                    {{'This field is required'}}
+                </p>
+                <p *ngIf="username.value.length < 3">
+                    {{'Name is to short.'}}
+                </p>
+                <p *ngIf="username.value.length > 30">
+                    {{'Name is to long.'}}
+                </p>
+                <p *ngIf="username.value.includes(' ')">
+                    {{"Empty space in name is not allowed."}}
+                </p>
+            </div>
+        </div>
+            <div class="username-conatiner">
+                <label>Email:</label>
+                <input
+                    #email="ngModel"  
+                    ngModel
+                    type="text"
+                    name="email" 
+                    required 
+                    minlength="10" 
+                    maxlength="40" 
+                    pattern="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                />
+                <div class="email-error" *ngIf="email.touched">
+                    <p *ngIf="email.invalid">
+                        {{'This field is required'}}
+                    </p>
+                    <p *ngIf="email.value.length < 10">
+                        {{'Email is to short.'}}
+                    </p>
+                    <p *ngIf="email.value.length > 40">
+                        {{'Email is to long.'}}
+                    </p>
+                    <p *ngIf="email.value.includes(' ')">
+                        {{"Empty space in email is not allowed."}}
+                    </p>
+                    <p *ngIf="!email.value.includes('@')">
+                        {{"Proper email address should conatin '@'"}}
+                    </p>
+                    <p *ngIf="!email.value.includes('.')">
+                        {{"Proper email address should conatin '.'"}}
+                    </p>
+                </div>
+            </div>
+       
+        <!--  dodac do button -->
+        <button
+            [disabled]="!userForm.valid"
+        >
+            Start
+        </button>
     </form>
-    <button (click)="sendName(userForm.value.username)">Start</button>
-</div>
