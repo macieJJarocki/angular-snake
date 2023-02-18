@@ -1,4 +1,4 @@
-<ngx-snake #game (foodEaten) = "onFoodEaten($event)"></ngx-snake>
+<ngx-snake #game (foodEaten)="onFoodEaten($event)"></ngx-snake>
     <button  #start name="start" (click)="game.actionStart()" (click)="onClickedButton(start)" (click)="timer.startCountdown()">Start</button>
     <button  #stop (click)="game.actionStop()" (click)="onClickedButton(stop)" (click)="timer.stopCountdown()">Stop</button>
     <button  #reset (click)="game.actionReset()" (click)="onClickedButton(reset)">Reset</button>
@@ -7,6 +7,8 @@
     <button  #right (click)="game.actionRight()" (click)="onClickedButton(right)">Right</button>
     <button  #down (click)="game.actionDown()" (click)="onClickedButton(down)">Down</button>
     
+    <button (click)="onClickedExitButton()">Exit</button>
+
     <app-actions-log [msg]="actionsArray"></app-actions-log>
     <app-timer></app-timer>
 

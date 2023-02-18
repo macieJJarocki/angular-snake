@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, Output, EventEmitter} from '@angular/core';
 import { Message } from '../Interfaces';
 import { TimerComponent } from '../timer/timer.component';
 
@@ -10,7 +10,7 @@ import { TimerComponent } from '../timer/timer.component';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements AfterViewInit {
-  
+
   private userActionsMSG: Object = {
     'Start' : 'User clicked start button',
     'Stop' : 'User clicked stop button',
@@ -23,6 +23,8 @@ export class GameComponent implements AfterViewInit {
   public snakeFoodEaten = 0;
   public actionsArray: Message[] = [] 
   public actionTime: number = 0
+  
+  @Output() usernameEvent = new EventEmitter<string>()
   
   @ViewChild(TimerComponent) timer!: TimerComponent
   
@@ -41,6 +43,10 @@ export class GameComponent implements AfterViewInit {
     const action = element.innerText
     const actionMessage = {action: action, time: this.timer.currentTime} 
     this.actionsArray.push(actionMessage)
+  }
+
+  onClickedExitButton(){
+    this.usernameEvent.emit('')
   }
 
   }

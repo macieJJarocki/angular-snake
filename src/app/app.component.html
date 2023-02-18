@@ -4,4 +4,4 @@
   <app-home-page-form  (userNameEvent)="reciveUsername($event)"></app-home-page-form>
 </div>
 {{username}}
-<app-game *ngIf="username"></app-game>
+<app-game *ngIf="username" (usernameEvent)="reciveUsername($event)"></app-game>
