@@ -3,7 +3,7 @@
   background-color: #b2e2b4;
 }
 
-.ng-invalid:not(form)  {
+.ng-invalid:not(form).ng-touched:not(form) {
   border: 3px solid #b12e2c; 
   background-color: #e7a1a0;
 }

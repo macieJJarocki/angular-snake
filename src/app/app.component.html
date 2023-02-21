@@ -1,7 +1,13 @@
-<div *ngIf="!username" class="home-page">
-  <h2>Welcome </h2>
-  <h3>Fill in the form below to start the game</h3>
-  <app-home-page-form  (userNameEvent)="reciveUsername($event)"></app-home-page-form>
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+  <div class="row">
+    <div class="col card" *ngIf="!username">
+      <div class="card-body">
+        <h3 class="card-text text-center">Fill the form below to start the game</h3>
+        <app-home-page-form (userNameEvent)="reciveUsername($event)"></app-home-page-form>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="username">
+    <app-game (usernameEvent)="reciveUsername($event)"></app-game>
+  </div>
 </div>
-{{username}}
-<app-game *ngIf="username" (usernameEvent)="reciveUsername($event)"></app-game>
