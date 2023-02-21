@@ -20,9 +20,7 @@ export class TimerComponent implements OnInit {
     
   startCountdown(){
     const initialTime = Date.now() - this.currentTime
-    this.refreshTimer = setInterval(() => {
-      this.currentTime = Date.now() - initialTime
-    })
+    this.refreshTimer = setInterval(() => {this.currentTime = Date.now() - initialTime})
   }
 
   stopCountdown(){

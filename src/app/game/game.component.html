@@ -1,17 +1,57 @@
-<ngx-snake #game (foodEaten)="onFoodEaten($event)"></ngx-snake>
-    <button  #start name="start" (click)="game.actionStart()" (click)="onClickedButton(start)" (click)="timer.startCountdown()">Start</button>
-    <button  #stop (click)="game.actionStop()" (click)="onClickedButton(stop)" (click)="timer.stopCountdown()">Stop</button>
-    <button  #reset (click)="game.actionReset()" (click)="onClickedButton(reset)">Reset</button>
-    <button  #up (click)="game.actionUp()" (click)="onClickedButton(up)">Up</button>
-    <button  #left (click)="game.actionLeft()" (click)="onClickedButton(left)">Left</button>
-    <button  #right (click)="game.actionRight()" (click)="onClickedButton(right)">Right</button>
-    <button  #down (click)="game.actionDown()" (click)="onClickedButton(down)">Down</button>
-    
-    <button (click)="onClickedExitButton()">Exit</button>
-
-    <app-actions-log [msg]="actionsArray"></app-actions-log>
-    <app-timer></app-timer>
-
-
-<p>Score: {{snakeFoodEaten}}</p>
-
+    <div class="row row-cols-2">
+        <div class="col-6 card" style="background-color: rgb(233, 233, 230); min-width: 400px;">
+            <div class="row">
+                <div class="text-center p-2">
+                    <h2>Hello, <strong>{{'username'}}</strong>!</h2>
+                </div>
+                <div class="row row-cols-2 d-flex justify-content-between">
+                    <div class="col">
+                        <app-timer class="text-center"></app-timer>
+                    </div>
+                    <div class="col">
+                        <h5 class="text-center">Points: {{snakeFoodEaten}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row">    
+                <ngx-snake class="d-flex justify-content-center p-2" #game (foodEaten)="onFoodEaten($event)"></ngx-snake>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-3">
+                    <button class="btn btn-outline-success btn-md btn-block" style="width: 100%;" #start name="start" (click)="game.actionStart()" (click)="onClickedButton(start)" (click)="timer.startCountdown()" ><strong>Start</strong></button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-outline-danger btn-md btn-block"  style="width: 100%;" #stop (click)="game.actionStop()" (click)="onClickedButton(stop)" (click)="timer.stopCountdown()" ><strong>Stop</strong></button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-outline-warning btn-md btn-block" style="width: 100%;" #reset (click)="game.actionReset()" (click)="onClickedButton(reset)" ><strong>Reset</strong></button>
+                </div>
+            </div>
+            <div class="p-3" *ngIf="actionsArray.length">
+                <div class="col-4 mx-auto">
+                    <button class="btn btn-success btn-md btn-block" style="width: 100%;" #up (click)="game.actionUp()" (click)="onClickedButton(up)"><strong>Up</strong></button>
+                </div>
+                <div class="row d-flex justify-content-center p-2">
+                    <div class="col-5">
+                        <button class="btn btn-warning btn-md btn-block" style="width: 100%;" #left (click)="game.actionLeft()" (click)="onClickedButton(left)"><strong>Left</strong></button>
+                    </div>
+                    <div class="col-5">
+                        <button class="btn btn-warning btn-md btn-block" style="width: 100%;" #right (click)="game.actionRight()" (click)="onClickedButton(right)"><strong>Right</strong></button>
+                    </div>
+                </div>
+                <div class="col-4 mx-auto">
+                    <button class="btn btn-success btn-md btn-block" style="width: 100%;" #down (click)="game.actionDown()" (click)="onClickedButton(down)"><strong>Down</strong></button>
+                </div>
+                <div class="row p-4">
+                    <div class="col-6 mx-auto">
+                        <button class="btn btn-outline-danger btn-block p-4" style="width: 100%;" (click)="onClickedExitButton()"><strong>Exit</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="actionsArray.length" class="col-6 card" style="background-color: rgb(233, 233, 230); min-width: 400px;">
+            <div class="row mx-auto" style="width: 100%;">
+                <app-actions-log [msg]="actionsArray"></app-actions-log>
+            </div>
+        </div>
+    </div>

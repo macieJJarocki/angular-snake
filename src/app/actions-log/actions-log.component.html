@@ -1,22 +1,17 @@
-<div *ngIf="msg.length > 0">
-    <ul *ngFor="let action of msg | filter: actionFlag | sort: sortedBy">
-        <li>{{action.time | date:'mm:ss'}} User <strong>{{action.action}}</strong> button</li>
-    </ul>
+<div class="row card" style="background-color: rgb(233, 233, 230);">
+    <div class="col mx-auto">
+        <label class="form-label">Filter by action:</label>
+        <select class="form-select" [(ngModel)]="actionFlag">
+            <option *ngFor="let action of actionOptions" [ngValue]="action">{{action}}</option>
+        </select>
+        <label>Sort by time:</label>
+        <select class="form-select" [(ngModel)]="sortedBy">
+            <option *ngFor="let time of timeOptions" [ngValue]="time">{{time}}</option>
+        </select>
+        <ul class="list-group p-1" *ngFor="let action of msg | filter: actionFlag | sort: sortedBy"> 
+            <li *ngIf="action.time > 60000" class="list-group-item list-group-item-action list-group-item-success">In {{action.time | date:'m:s.S'}}s User clicked <strong>{{action.action}}</strong> button</li>
+            <li *ngIf="action.time < 60000" class="list-group-item list-group-item-action list-group-item-success">In {{action.time | date:'s.S'}}s User clicked <strong>{{action.action}}</strong> button</li>
+        </ul>
+    </div>
 </div>
-<h2 *ngIf="msg.length <= 0">To start a game, click the Start button</h2>
-
-<div>
-    <label>Filter by action:</label>
-    <select [(ngModel)]="actionFlag">
-        <option *ngFor="let action of actionOptions" [ngValue]="action">{{action}}</option>
-    </select>
-</div>
-
-<div>
-    <label>Sort by time:</label>
-    <select [(ngModel)]="sortedBy">
-        <option *ngFor="let time of timeOptions" [ngValue]="time">{{time}}</option>
-    </select>
-</div>
-
 
