@@ -1,8 +1,6 @@
-import { AfterViewInit, Component, ViewChild, Output, EventEmitter} from '@angular/core';
+import { AfterViewInit, Component, ViewChild, Output, Input, EventEmitter} from '@angular/core';
 import { Message } from '../Interfaces';
 import { TimerComponent } from '../timer/timer.component';
-
-
 
 @Component({
   selector: 'app-game',
@@ -25,6 +23,8 @@ export class GameComponent implements AfterViewInit {
   public actionTime: number = 0
   
   @Output() usernameEvent = new EventEmitter<string>()
+  
+  @Input() username = ''
   
   @ViewChild(TimerComponent) timer!: TimerComponent
   
