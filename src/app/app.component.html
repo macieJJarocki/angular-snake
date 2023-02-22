@@ -8,6 +8,6 @@
     </div>
   </div>
   <div *ngIf="username">
-    <app-game (usernameEvent)="reciveUsername($event)"></app-game>
+    <app-game (usernameEvent)="reciveUsername($event)" [username]="username"></app-game>
   </div>
 </div>
